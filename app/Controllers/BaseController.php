@@ -18,4 +18,13 @@ abstract class BaseController extends Controller {
         parent::initController($request, $response, $logger);
 
     }
+
+    public function isLogged(): bool {
+        if(session()->get('logged') === true && session()->get('super') === true) {
+            return true;
+        } else {
+            session_destroy();
+            return false;
+        }
+	}
 }

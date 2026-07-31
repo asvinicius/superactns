@@ -57,7 +57,7 @@
                         <p class="fauth-subtitle">Faça login para acessar o gerenciador</p>
                     </div>
 
-                    <form class="fauth-form" novalidate>
+                    <form class="fauth-form" method="post" action="<?= base_url('login/signin');?>" novalidate>
                         <div class="fauth-field">
                             <label for="super_login" class="form-label">Login</label>
                             <input type="text" class="form-control" id="super_login" name="super_login" placeholder="Login" required>
