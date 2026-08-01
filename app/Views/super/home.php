@@ -1,0 +1,361 @@
+<!-- Main Content -->
+  <main class="main">
+    <div class="main-content page-dashboard">
+      <div class="page-dashboard nd-dashboard">
+        <section class="nd-topbar">
+          <div>
+            <h1 class="nd-title">Executive Operations Dashboard</h1>
+            <p class="nd-subtitle">Unified delivery, growth, and reliability signals for daily decision-making.</p>
+          </div>
+        </section>
+
+        <section class="row g-3 mb-3 nd-kpi-rail">
+          <div class="col-xxl-3 col-md-6">
+            <article class="nd-kpi-card nd-kpi-revenue">
+              <span class="nd-kpi-icon"><i class="bi bi-currency-dollar"></i></span>
+              <span class="nd-kpi-label">Net Revenue</span>
+              <strong class="nd-kpi-value">$94.2K</strong>
+              <span class="nd-kpi-trend up"><i class="bi bi-arrow-up-right"></i> 9.4%</span>
+            </article>
+          </div>
+          <div class="col-xxl-3 col-md-6">
+            <article class="nd-kpi-card nd-kpi-leads">
+              <span class="nd-kpi-icon"><i class="bi bi-people"></i></span>
+              <span class="nd-kpi-label">Qualified Leads</span>
+              <strong class="nd-kpi-value">1,284</strong>
+              <span class="nd-kpi-trend up"><i class="bi bi-arrow-up-right"></i> 6.1%</span>
+            </article>
+          </div>
+          <div class="col-xxl-3 col-md-6">
+            <article class="nd-kpi-card nd-kpi-cycle">
+              <span class="nd-kpi-icon"><i class="bi bi-stopwatch"></i></span>
+              <span class="nd-kpi-label">Avg. Cycle Time</span>
+              <strong class="nd-kpi-value">4.2d</strong>
+              <span class="nd-kpi-trend down"><i class="bi bi-arrow-down-right"></i> 3.5%</span>
+            </article>
+          </div>
+          <div class="col-xxl-3 col-md-6">
+            <article class="nd-kpi-card nd-kpi-retention">
+              <span class="nd-kpi-icon"><i class="bi bi-shield-check"></i></span>
+              <span class="nd-kpi-label">Retention</span>
+              <strong class="nd-kpi-value">92.7%</strong>
+              <span class="nd-kpi-trend up"><i class="bi bi-arrow-up-right"></i> 1.8%</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="row g-3 mb-3">
+          <div class="col-xl-8">
+            <div class="card mb-3">
+              <div class="card-header nd-chart-header">
+                <h5 class="card-title mb-0">Performance Curve</h5>
+                <div class="nd-period-switch">
+                  <button class="nd-period-btn active" data-period="monthly">Month</button>
+                  <button class="nd-period-btn" data-period="weekly">Week</button>
+                  <button class="nd-period-btn" data-period="daily">Day</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="nd-chart-summary">
+                  <div>
+                    <span>Revenue</span>
+                    <strong id="summaryRevenue">$94.2K</strong>
+                  </div>
+                  <div>
+                    <span>Cost</span>
+                    <strong id="summaryExpenses">$57.6K</strong>
+                  </div>
+                  <div>
+                    <span>Margin</span>
+                    <strong id="summaryProfit">$36.6K</strong>
+                  </div>
+                </div>
+                <div id="revenueChart" class="nd-chart-canvas"></div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Latest Transactions</h5>
+                <a href="invoice-list.html" class="nd-inline-link">Open ledger</a>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0 nd-transaction-table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Account</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#TXN-3112</td>
+                        <td>
+                          <div class="nd-user"><img src="assets/img/avatars/avatar-1.webp" alt=""><span>Alex Thompson</span></div>
+                        </td>
+                        <td>Feb 24, 2026</td>
+                        <td>$2,140.00</td>
+                        <td><span class="badge bg-success-light text-success">Completed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#TXN-3111</td>
+                        <td>
+                          <div class="nd-user"><img src="assets/img/avatars/avatar-2.webp" alt=""><span>Mia Rodriguez</span></div>
+                        </td>
+                        <td>Feb 24, 2026</td>
+                        <td>$890.00</td>
+                        <td><span class="badge bg-warning-light text-warning">Pending</span></td>
+                      </tr>
+                      <tr>
+                        <td>#TXN-3110</td>
+                        <td>
+                          <div class="nd-user"><img src="assets/img/avatars/avatar-3.webp" alt=""><span>Mike Johnson</span></div>
+                        </td>
+                        <td>Feb 23, 2026</td>
+                        <td>$3,420.00</td>
+                        <td><span class="badge bg-success-light text-success">Completed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#TXN-3109</td>
+                        <td>
+                          <div class="nd-user"><img src="assets/img/avatars/avatar-4.webp" alt=""><span>Emily Davis</span></div>
+                        </td>
+                        <td>Feb 23, 2026</td>
+                        <td>$540.00</td>
+                        <td><span class="badge bg-danger-light text-danger">Failed</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Sales Targets</h5>
+                <a href="reports.html" class="nd-inline-link">View report</a>
+              </div>
+              <div class="card-body">
+                <div class="nd-health-row">
+                  <span>Product Revenue</span>
+                  <strong>74%</strong>
+                </div>
+                <div class="progress mb-3">
+                  <div class="progress-bar bg-success" style="width: 74%"></div>
+                </div>
+
+                <div class="nd-health-row">
+                  <span>Service Revenue</span>
+                  <strong>61%</strong>
+                </div>
+                <div class="progress mb-3">
+                  <div class="progress-bar bg-info" style="width: 61%"></div>
+                </div>
+
+                <div class="nd-health-row">
+                  <span>Renewals</span>
+                  <strong>83%</strong>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-primary" style="width: 83%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Team Activity</h5>
+                <a href="activity.html" class="nd-inline-link">View all</a>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0 nd-matrix-table">
+                    <thead>
+                      <tr>
+                        <th>Member</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>ETA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Sarah W.</td>
+                        <td>Campaign split test</td>
+                        <td><span class="badge bg-primary-light text-primary">In Progress</span></td>
+                        <td>2h</td>
+                      </tr>
+                      <tr>
+                        <td>Alex T.</td>
+                        <td>Q1 budget review</td>
+                        <td><span class="badge bg-success-light text-success">Done</span></td>
+                        <td>Completed</td>
+                      </tr>
+                      <tr>
+                        <td>Mia R.</td>
+                        <td>Partner outreach deck</td>
+                        <td><span class="badge bg-warning-light text-warning">Review</span></td>
+                        <td>Today</td>
+                      </tr>
+                      <tr>
+                        <td>Emily D.</td>
+                        <td>Billing edge-case QA</td>
+                        <td><span class="badge bg-danger-light text-danger">Blocked</span></td>
+                        <td>1d</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4">
+            <div class="card nd-recent-card mb-3">
+              <div class="card-body">
+                <div class="nd-recent-head">
+                  <div>
+                    <h5>Recent Activity</h5>
+                    <p>Last 2 hours</p>
+                  </div>
+                  <a href="activity.html" class="nd-inline-link">View</a>
+                </div>
+                <div class="nd-recent-grid">
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-success"></span>
+                    <div><strong>Alex Thompson</strong> completed purchase workflow update.</div>
+                  </article>
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-primary"></span>
+                    <div><strong>Sarah Wilson</strong> submitted dashboard UX revisions.</div>
+                  </article>
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-warning"></span>
+                    <div>Storage usage crossed <strong>80%</strong> on media bucket.</div>
+                  </article>
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-info"></span>
+                    <div>Deployment <strong>v3.2.1</strong> passed production checks.</div>
+                  </article>
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-success"></span>
+                    <div>New lead batch synced from CRM integrations.</div>
+                  </article>
+                  <article class="nd-recent-item"><span class="nd-recent-dot bg-danger"></span>
+                    <div>Billing retry required for invoice <strong>#INV-8043</strong>.</div>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="card-title mb-0">Acquisition Mix</h5>
+              </div>
+              <div class="card-body">
+                <div id="trafficChart" class="nd-donut-canvas"></div>
+                <div class="nd-acq-list">
+                  <div><span>Inbound</span><strong>38%</strong></div>
+                  <div><span>Outbound</span><strong>24%</strong></div>
+                  <div><span>Partners</span><strong>21%</strong></div>
+                  <div><span>Community</span><strong>17%</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="card-title mb-0">System Stability</h5>
+              </div>
+              <div class="card-body">
+                <div class="nd-health-row">
+                  <span>API Success</span>
+                  <strong>99.4%</strong>
+                </div>
+                <div class="progress mb-2">
+                  <div class="progress-bar bg-success" style="width: 99.4%"></div>
+                </div>
+
+                <div class="nd-health-row">
+                  <span>Background Jobs</span>
+                  <strong>97.8%</strong>
+                </div>
+                <div class="progress mb-2">
+                  <div class="progress-bar" style="width: 97.8%"></div>
+                </div>
+
+                <div class="nd-health-row">
+                  <span>Queue Throughput</span>
+                  <strong>93.1%</strong>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-warning" style="width: 93.1%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title mb-0">Campaign Matrix</h5>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0 nd-matrix-table">
+                    <thead>
+                      <tr>
+                        <th>Campaign</th>
+                        <th>Owner</th>
+                        <th>Spend</th>
+                        <th>ROI</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Enterprise outbound</td>
+                        <td>Sarah W.</td>
+                        <td>$12,400</td>
+                        <td><span class="badge bg-success-light text-success">+31%</span></td>
+                      </tr>
+                      <tr>
+                        <td>Lifecycle nurture</td>
+                        <td>Mia R.</td>
+                        <td>$8,650</td>
+                        <td><span class="badge bg-primary-light text-primary">+18%</span></td>
+                      </tr>
+                      <tr>
+                        <td>Partner activation</td>
+                        <td>Alex T.</td>
+                        <td>$6,220</td>
+                        <td><span class="badge bg-warning-light text-warning">+9%</span></td>
+                      </tr>
+                      <tr>
+                        <td>Community relaunch</td>
+                        <td>Emily D.</td>
+                        <td>$4,980</td>
+                        <td><span class="badge bg-danger-light text-danger">-2%</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row g-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body py-3">
+                <p class="mb-0 small text-muted">
+                  You can add more dashboard widgets, fully rearrange this layout, and combine additional widget blocks for your own dashboard composition:
+                  <a href="widgets-cards.html" class="nd-inline-link ms-1">Cards Widgets</a> |
+                  <a href="widgets-banners.html" class="nd-inline-link">Banners Widgets</a> |
+                  <a href="widgets-charts.html" class="nd-inline-link">Charts Widgets</a> |
+                  <a href="widgets-apps.html" class="nd-inline-link">Apps Widgets</a> |
+                  <a href="widgets-data.html" class="nd-inline-link">Data Widgets</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
