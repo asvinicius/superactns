@@ -3,8 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\HTTP\RedirectResponse;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use App\Libraries\ApiService;
 
 class Login extends BaseController {
     public function index(): RedirectResponse|string {
@@ -20,53 +19,45 @@ class Login extends BaseController {
             return redirect()->to(base_url('home'));
         } else {
 
+            $api = new ApiService();
+
             $super_login = $this->request->getPost("super_login");
             $super_password = $this->request->getPost("super_password");
 
-            echo $super_login." - ".$super_password;
-            return false;
+            $result = $api->request('POST', 'auth/super/login', [
+                'super_login'    => $super_login,
+                'super_password' => $super_password,
+            ], withAuth: false);
 
-            /*
-            $this->load->model("LoginModel");
-
-            $supernick = $this->input->post("supernick");
-            $superpassword = md5($this->input->post("superpassword"));
-
-            $super = $this->LoginModel->search($supernick, $superpassword);
-
-            if ($super) {
-                if ($super['superstatus'] == '1') {
-                    $session = [
-                        'super_id' => $super["superid"],
-                        'super_name' => $super["supername"],
-                        'super' => TRUE,
-                        'logged' => TRUE
-                    ];
-
-                    session()->set($session);
-
-                    return redirect()->to(base_url('login'));
-                } else {
-                    $alert = array(
-                        "class" => "warning",
-                        "message" => "Seu acesso esta bloqueado!<br />Entre em contato com um administrador."
-                    );
-
-                    $info = array("alert" => $alert);
-
-                    return view('public/login', $info);
-                }
-            } else {
+            if(!$result['success']) {
+                
                 $alert = array(
                     "class" => "danger",
-                    "message" => "Usuário ou senha incorretos"
+                    "message" => $result['data']['error']
                 );
 
                 $info = array("alert" => $alert);
 
                 return view('public/login', $info);
             }
-            */
+
+            $super = $result['data'];
+
+            $session = [
+                'super' => TRUE,
+                'super_id' => $super["super_id"],
+                'super_name' => $super["super_name"],
+                'token'     => $super['token']
+            ];
+
+            session()->set($session);
+
+            return redirect()->to(base_url('login'));
         }
+    }
+
+    public function signout(): RedirectResponse {
+        session()->destroy();
+        return redirect()->to(base_url());
     }
 }

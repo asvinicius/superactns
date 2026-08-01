@@ -47,7 +47,7 @@
         <main class="fauth-main">
             <div class="fauth-main-inner">
                 <a href="index.html" class="fauth-logo fauth-logo-center">
-                    <img src="assets/img/logo.webp" alt="NiceAdmin">
+                    <img src="<?= base_url('assets/img/logo.webp'); ?>" alt="NiceAdmin">
                     <span>Gerenciador</span>
                 </a>
 
@@ -57,12 +57,16 @@
                         <p class="fauth-subtitle">Faça login para acessar o gerenciador</p>
                     </div>
 
-                    <form class="fauth-form" method="post" action="<?= base_url('login/signin');?>" novalidate>
+                    <form class="fauth-form" method="post" action="<?= base_url('login/signin') ?>" novalidate>
+                        <?php if(isset($alert)) { ?>
+                            <div class="alert alert-<?= esc($alert['class']) ?>" role="alert">
+                                <?= esc($alert['message']) ?>
+                            </div>
+                        <?php } ?>
                         <div class="fauth-field">
                             <label for="super_login" class="form-label">Login</label>
                             <input type="text" class="form-control" id="super_login" name="super_login" placeholder="Login" required>
-                        </div>
-
+                        </div>                        
                         <div class="fauth-field">
                             <div class="fauth-row-between">
                                 <label for="super_password" class="form-label">Senha</label>

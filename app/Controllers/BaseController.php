@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Libraries\ApiService;
 
 abstract class BaseController extends Controller {
 
@@ -20,11 +21,21 @@ abstract class BaseController extends Controller {
     }
 
     public function isLogged(): bool {
-        if(session()->get('logged') === true && session()->get('super') === true) {
-            return true;
-        } else {
-            session_destroy();
+
+        if(session()->get('super') !== true) {
             return false;
         }
+
+        $api = new ApiService();
+
+        $result = $api->request('GET', 'auth/super/islogged', [], withAuth: true);
+
+        if(!$result['success']) {
+            session()->destroy();
+            return false;
+        }
+
+        return true;
+
 	}
 }
