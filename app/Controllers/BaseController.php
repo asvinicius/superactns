@@ -47,11 +47,30 @@ abstract class BaseController extends Controller {
 
     public function getInfo(int $page): array {
 
+        $auth = [
+            'withAuth' => true,
+            'token' => session()->get('token')
+        ];
+
+        $api = new ApiService();
+
+        $result = $api->request('GET', 'info', [], $auth);
+
+        if(!$result['success']) {
+            $error = $result['data']['error'];
+            $status = null;
+        } else {
+            $error = null;
+            $status = $result['data'];
+        }
+
         // $notifications = request para endpoint que retorna as notificações
         // $count_notifications = count($notifications)
 
         return [
-            'pageid' => $page
+            'pageid' => $page,
+            'status' => $status,
+            'error' => $error
         ];
     }
 

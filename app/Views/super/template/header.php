@@ -73,6 +73,31 @@
             <div class="header-actions-desktop">
                 <div class="header-action-wrap dropdown notification-dropdown">
                     <button class="header-action dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
+                        <i class="bi bi-info"></i>
+                    </button>
+                    <?php 
+                        $date = new DateTime($info['status']['shutdown_timestamp']);
+                    ?>
+                    <div class="dropdown-menu dropdown-menu-end notification-menu">
+                        <div class="notification-summary">
+                            <a href="activity.html" class="notification-summary-item">
+                                <strong><?= $info['status']['current_round'] ?></strong>
+                                <span>Rodada atual</span>
+                            </a>
+                            <a href="notifications.html" class="notification-summary-item">
+                                <strong><?= $date->format('d/m') ?></strong>
+                                <span>Fechamento dia</span>
+                            </a>
+                            <a href="roles.html" class="notification-summary-item">
+                                <strong><?= $date->format('H:i') ?></strong>
+                                <span>Fechamento hora</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-action-wrap dropdown notification-dropdown">
+                    <button class="header-action dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
                         <i class="bi bi-bell"></i>
                         <span class="header-badge">4</span>
                     </button>
@@ -86,8 +111,8 @@
                         </div>
                         <div class="notification-summary">
                             <a href="activity.html" class="notification-summary-item">
-                                <strong>7</strong>
-                                <span>Today</span>
+                                <strong>XX</strong>
+                                <span>Lero lero</span>
                             </a>
                             <a href="notifications.html" class="notification-summary-item">
                                 <strong>23</strong>
