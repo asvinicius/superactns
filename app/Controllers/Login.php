@@ -32,10 +32,10 @@ class Login extends BaseController {
 
         if(!$result['success']) {
             
-            $alert = array(
+            $alert = [
                 "class" => "danger",
                 "message" => $result['data']['error']
-            );
+            ];
 
             $info = array("alert" => $alert);
 
