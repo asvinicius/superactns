@@ -249,7 +249,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 2) { echo "active";} ?>" href="<?= base_url() ?>">
+                        <a class="nav-link <?php if ($info['pageid'] == 2) { echo "active";} ?>" href="<?= base_url('adm') ?>">
                             <span class="nav-icon"><i class="ph-light ph-users"></i></span>
                             <span class="nav-text">Administradores</span>
                         </a>
