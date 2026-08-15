@@ -36,6 +36,19 @@
   <!-- App Sidebar Toggle (for app pages with sidebars) -->
   <script src="<?= base_url('assets/js/apps-sidebar-toggle.js') ?>"></script>
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editModal = document.getElementById('updateUserModal');
+
+        editModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+
+            document.getElementById('edit_bank_id').value = button.dataset.id;
+            document.getElementById('edit_bank_name').value = button.dataset.name;
+            document.getElementById('edit_bank_status').value = button.dataset.status;
+        });
+    });
+</script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

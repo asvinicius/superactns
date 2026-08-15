@@ -146,7 +146,7 @@
                     <button class="dropdown-toggle user-trigger" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?= base_url('assets/img/profile-img.webp') ?>" alt="User" class="user-avatar">
                         <div class="user-brief">
-                            <span class="user-name"><?= session()->get('super_name') ?>
+                            <span class="user-name"><?= esc(session()->get('super_name')) ?>
                             </span>
                             <span class="user-role">Super</span>
                         </div>
@@ -156,7 +156,7 @@
                         <div class="user-menu-header">
                             <img src="<?= base_url('assets/img/profile-img.webp') ?>" alt="User" class="user-menu-avatar">
                             <div class="user-menu-info">
-                                <div class="user-menu-name"><?= session()->get('super_name') ?></div>
+                                <div class="user-menu-name"><?= esc(session()->get('super_name')) ?></div>
                             </div>
                         </div>
                         <div class="user-menu-footer">
@@ -241,7 +241,7 @@
                 <ul class="nav-menu">
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 1) { echo "active";} ?>" href="<?= base_url() ?>">
+                        <a class="nav-link <?php if (isset($info) && $info['pageid'] == 1) { echo "active";} ?>" href="<?= base_url() ?>">
                             <span class="nav-icon"><i class="ph-light ph-squares-four"></i></span>
                             <span class="nav-text">Dashboard</span>
                             <span class="nav-meta">Início</span>
@@ -249,28 +249,28 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 2) { echo "active";} ?>" href="<?= base_url('adm') ?>">
+                        <a class="nav-link <?php if (isset($info) && $info['pageid'] == 2) { echo "active";} ?>" href="<?= base_url('adm') ?>">
                             <span class="nav-icon"><i class="ph-light ph-users"></i></span>
                             <span class="nav-text">Administradores</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 3) { echo "active";} ?>" href="<?= base_url() ?>">
+                        <a class="nav-link <?php if (isset($info) && $info['pageid'] == 3) { echo "active";} ?>" href="<?= base_url() ?>">
                             <span class="nav-icon"><i class="ph-light ph-trophy"></i></span>
                             <span class="nav-text">Ligas</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 4) { echo "active";} ?>" href="<?= base_url('backup') ?>">
+                        <a class="nav-link <?php if (isset($info) && $info['pageid'] == 4) { echo "active";} ?>" href="<?= base_url('backup') ?>">
                             <span class="nav-icon"><i class="ph-light ph-database"></i></span>
                             <span class="nav-text">Backups</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($info['pageid'] == 5) { echo "active";} ?>" href="<?= base_url() ?>">
+                        <a class="nav-link <?php if (isset($info) && $info['pageid'] == 5) { echo "active";} ?>" href="<?= base_url() ?>">
                             <span class="nav-icon"><i class="ph-light ph-arrow-clockwise"></i></span>
                             <span class="nav-text">Atualizações</span>
                         </a>
@@ -281,13 +281,13 @@
 
             <!-- Sidebar Footer -->
             <div class="sidebar-footer">
-                    <div class="alert alert-<?php if ($info['status']['market_status'] == 1) {
+                    <div class="alert alert-<?php if (isset($info) && $info['status']['market_status'] == 1) {
                                             echo "success";
                                         } else {
                                             echo "danger";
                                         } ?>" role="alert">
                         Mercado 
-                            <?php if ($info['status']['market_status'] == 1) {
+                            <?php if (isset($info) && $info['status']['market_status'] == 1) {
                                 echo "Aberto";
                             } else {
                                 echo "Fechado";

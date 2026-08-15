@@ -29,11 +29,11 @@
                                         <?php if(isset($backup)) { ?>
                                             <?php foreach($backup as $bkp_item) { ?>
                                                 <tr>
-                                                    <td><?= $bkp_item['backup_id']; ?></td>
-                                                    <td><?= $bkp_item['backup_file']; ?></td>
-                                                    <td><?= $bkp_item['backup_size']; ?></td>
-                                                    <td><?= $bkp_item['backup_trigger']; ?></td>
-                                                    <td><?= date('d/m/Y', strtotime($bkp_item['backup_created_at'])) ?></td>
+                                                    <td><?= esc($bkp_item['backup_id']) ?></td>
+                                                    <td><?= esc($bkp_item['backup_file']) ?></td>
+                                                    <td><?= esc($bkp_item['backup_size']) ?></td>
+                                                    <td><?= esc($bkp_item['backup_trigger']) ?></td>
+                                                    <td><?= esc(date('d/m/Y', strtotime($bkp_item['backup_created_at']))) ?></td>
                                                     <td>
                                                         <?php 
                                                             if($bkp_item['backup_status'] == "success"){
@@ -43,7 +43,7 @@
                                                             }
                                                         ?>
                                                         <span class="badge bg-<?= $badge ?>-light text-<?= $badge ?>">
-                                                            <?= $bkp_item['backup_status']; ?>
+                                                            <?= esc($bkp_item['backup_status']) ?>
                                                         </span>
                                                     </td>                                            
                                                     <td>Ações</td>

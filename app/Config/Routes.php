@@ -12,3 +12,5 @@ $routes->get('backup', 'Backup::index');
 $routes->get('adm', 'Adm::index');
 $routes->get('bank', 'Bank::index');
 $routes->post('bank/create', 'Bank::create');
+$routes->post('bank/update', 'Bank::update');
+$routes->get('bank/remove/(:num)', 'Bank::remove/$1');

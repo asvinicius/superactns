@@ -13,7 +13,7 @@ class Bank extends BaseController {
         }
 
         $getinfo = $this->getInfo(2);
-        $info = ["info" => $getinfo, "title" => "Backup"];
+        $info = ["info" => $getinfo, "title" => "Bancos"];
 
         $api = new ApiService();
 
@@ -72,6 +72,74 @@ class Bank extends BaseController {
             ]);
         }
 
-        return redirect()->to(base_url('bank'));
+        return redirect()->to(base_url('bank'))->with('alert', [
+            'class'   => 'success',
+            'message' => 'Banco cadastrado com sucesso!',
+        ]);
+    }
+
+    public function update(): RedirectResponse {
+        if (!$this->isLogged()) {
+            return redirect()->to(base_url('login'));            
+        }
+
+        $edit_bank_id = $this->request->getPost('edit_bank_id');
+        $edit_bank_name = $this->request->getPost('edit_bank_name');
+        $edit_bank_logo = $this->request->getFile('edit_bank_logo');
+
+        $api = new ApiService();
+
+        $auth = [
+            'withAuth' => true,
+            'isJson' => false,
+            'token' => session()->get('token')
+        ];
+
+        $result = $api->postMultipart('PUT', 'bank/update/'. $edit_bank_id, [
+            'edit_bank_name' => $edit_bank_name,
+        ], $auth, [
+            'edit_bank_logo' => $edit_bank_logo,
+        ]);
+        
+        if (!$result['success']) {
+            return redirect()->to(base_url('bank'))->with('alert', [
+                'class'   => 'danger',
+                'message' => $result['data']['error'] ?? 'Erro ao atualizar banco',
+            ]);
+        }
+
+        return redirect()->to(base_url('bank'))->with('alert', [
+            'class'   => 'primary',
+            'message' => 'Banco atualizado com sucesso!',
+        ]);
+           
+    }
+
+    public function remove($bankID = null): RedirectResponse|bool {
+        if (!$this->isLogged()) {
+            return redirect()->to(base_url('login'));            
+        }
+
+        $api = new ApiService();
+
+        $auth = [
+            'withAuth' => true,
+            'isJson' => false,
+            'token' => session()->get('token')
+        ];
+
+        $result = $api->request('DELETE', 'bank/delete/'.$bankID,[],$auth);
+
+        if (!$result['success']) {
+            return redirect()->to(base_url('bank'))->with('alert', [
+                'class'   => 'danger',
+                'message' => $result['data']['error'] ?? 'Erro ao atualizar banco',
+            ]);
+        }
+
+        return redirect()->to(base_url('bank'))->with('alert', [
+            'class'   => 'primary',
+            'message' => 'Banco removido com sucesso!',
+        ]);
     }
 }
