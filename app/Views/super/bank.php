@@ -40,17 +40,23 @@
                                                          <div class="users-user-info"><?= esc($bank_item['bank_name']) ?></div>
                                                      </div>
                                                  </td>
-                                                 <td><span class="users-status <?php if ($bank_item['bank_status']) {
-                                                                                    echo "active";
-                                                                                } else {
-                                                                                    echo "inactive";
-                                                                                } ?>"><span class="users-status-dot">
+                                                 <?php if ($bank_item['bank_status']) { ?>
+                                                    <?php $bankstatus = "active" ?>
+                                                 <?php } else { ?>
+                                                    <?php $bankstatus = "inactive" ?>
+                                                 <?php } ?>
+                                                 <td>
+                                                    <span class="users-status <?= esc($bankstatus) ?>">
+                                                        <span class="users-status-dot">
 
-                                                                                </span> <?php if ($bank_item['bank_status']) {
-                                                                                            echo "Ativo";
-                                                                                        } else {
-                                                                                            echo "Inativo";
-                                                                                        } ?></span></td>
+                                                        </span> 
+                                                        <?php if ($bank_item['bank_status']) { ?>
+                                                            Ativo
+                                                        <?php } else { ?>
+                                                            Inativo
+                                                        <?php } ?>
+                                                    </span>
+                                                </td>
                                                  <td>
                                                      <div class="users-actions">
                                                         <button data-bs-toggle="modal" title="Editar" data-bs-target="#updateUserModal" 
