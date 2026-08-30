@@ -12,7 +12,11 @@
            </button>
          </div>
        </div>
-
+        <?php if (isset($alert) && in_array($alert['class'], ['success', 'primary'])) { ?>
+          <div class="alert alert-<?= esc($alert['class']) ?>" role="alert">
+            <?= esc($alert['message']) ?>
+          </div>
+        <?php } ?>
        <div class="row g-3">
          <div class="col-xl-8">
            <div class="card users-list-card">
@@ -47,8 +51,8 @@
                             </div>
                           </td>
                           <td class="users-meta"><?= esc(date('d/m/y', strtotime($adm_item['adm_created_at']))) ?></td>
-                          <td class="users-meta"><?= esc(date('d/m/y', strtotime($adm_item['adm_updeated_at']))) ?></td>
-                          <td class="users-meta"><?= esc(date('d/m/y', strtotime($adm_item['adm_last_login']))) ?></td>
+                          <td class="users-meta"><?= esc(isset($adm_item['adm_updated_at']) ? date('d/m/y', strtotime($adm_item['adm_updeated_at'])) : '—') ?></td>
+                          <td class="users-meta"><?= esc(isset($adm_item['adm_last_login']) ? date('d/m/y', strtotime($adm_item['adm_last_login'])) : '—') ?></td>
                           <td>
                             <div class="users-actions">
                               <a href="users-view.html" class="users-action-btn" title="View"><i class="bi bi-eye"></i></a>
@@ -108,60 +112,38 @@
           </div>
         </div>
 
-       <div class="modal fade" id="addUserModal" tabindex="-1">
-         <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 class="modal-title">Add New User</h5>
-               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-             </div>
-             <div class="modal-body">
-               <form>
-                 <div class="row g-3">
-                   <div class="col-sm-6">
-                     <label class="form-label">First Name</label>
-                     <input type="text" class="form-control" placeholder="Enter first name">
-                   </div>
-                   <div class="col-sm-6">
-                     <label class="form-label">Last Name</label>
-                     <input type="text" class="form-control" placeholder="Enter last name">
-                   </div>
-                   <div class="col-12">
-                     <label class="form-label">Email Address</label>
-                     <input type="email" class="form-control" placeholder="Enter email address">
-                   </div>
-                   <div class="col-12">
-                     <label class="form-label">Role</label>
-                     <select class="form-select">
-                       <option value="">Select role...</option>
-                       <option value="admin">Admin</option>
-                       <option value="manager">Manager</option>
-                       <option value="user">User</option>
-                     </select>
-                   </div>
-                   <div class="col-sm-6">
-                     <label class="form-label">Password</label>
-                     <input type="password" class="form-control" placeholder="Enter password">
-                   </div>
-                   <div class="col-sm-6">
-                     <label class="form-label">Confirm Password</label>
-                     <input type="password" class="form-control" placeholder="Confirm password">
-                   </div>
-                   <div class="col-12">
-                     <div class="form-check">
-                       <input class="form-check-input" type="checkbox" id="sendInvite" checked>
-                       <label class="form-check-label" for="sendInvite">Send welcome email with login details</label>
-                     </div>
-                   </div>
-                 </div>
-               </form>
-             </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-               <button type="button" class="btn btn-primary">Add User</button>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
+        <div class="modal fade" id="addUserModal" tabindex="-1" data-reopen="<?= isset($alert) && $alert['class'] === 'danger' ? 'true' : 'false' ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Novo administrador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+            <div class="modal-body">
+              <form class="fauth-form" id="admForm" method="post" action="<?= base_url('adm/create') ?>">
+                <?php if (isset($alert) && $alert['class'] === 'danger') { ?>
+                  <div class="alert alert-<?= esc($alert['class']) ?>" role="alert">
+                    <?= esc($alert['message']) ?>
+                  </div>
+                <?php } ?>
+                <div class="row g-3">
+                  <div class="col-sm-12">
+                    <label for="adm_name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="adm_name" name="adm_name" placeholder="Nome" minlength="3" required>
+                  </div>
+                  <div class="col-sm-12">
+                    <label for="adm_login" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="adm_login" name="adm_login" placeholder="Login" minlength="3" required>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" form="admForm" class="btn btn-primary">Salvar</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

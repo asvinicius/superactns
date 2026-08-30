@@ -58,4 +58,50 @@ class Adm extends BaseController {
         return view('super/template/header', $info).view('super/adm', $content).view('super/template/footer');
         
     }
+
+    public function create(): RedirectResponse {
+        if (!$this->isLogged()) {
+            return redirect()->to(base_url('login'));            
+        }
+
+        $rules = [
+            'adm_name'  => 'required|min_length[3]|max_length[255]',
+            'adm_login' => 'required|min_length[3]|max_length[100]',
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->to(base_url('adm'))->with('alert', [
+                'class'   => 'danger',
+                'message' => $result['data']['error'] ?? 'Erro ao cadastrar administrador',
+            ]);
+        }
+
+        $api = new ApiService();
+
+        $adm_name = $this->request->getPost('adm_name');
+        $adm_login = $this->request->getPost('adm_login');
+
+        $auth = [
+            'withAuth' => true,
+            'token' => session()->get('token')
+        ];
+
+        $result = $api->request('POST', 'adm/create', [
+            'adm_name' => $adm_name,
+            'adm_login' => $adm_login,
+        ], $auth);
+
+        if (!$result['success']) {
+            return redirect()->to(base_url('adm'))->with('alert', [
+                'class'   => 'danger',
+                'message' => $result['data']['error'] ?? 'Erro ao cadastrar administrador',
+            ]);
+        }
+
+        return redirect()->to(base_url('adm'))->with('alert', [
+            'class'   => 'success',
+            'message' => 'Administrador cadastrado com sucesso!',
+        ]);
+        
+    }
 }

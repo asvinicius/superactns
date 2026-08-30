@@ -106,8 +106,8 @@
                              </form>
                          </div>
                          <div class="modal-footer">
-                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                              <button type="submit" form="bankForm" class="btn btn-primary">Salvar</button>
+                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                          </div>
                      </div>
                  </div>
@@ -141,8 +141,8 @@
                              </form>
                          </div>
                          <div class="modal-footer">
-                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                              <button type="submit" form="updateBankForm" class="btn btn-primary">Salvar</button>
+                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                          </div>
                      </div>
                  </div>
